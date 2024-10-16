@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import { ref } from 'vue';
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 import Dropdown from '@/Components/Dropdown.vue';
@@ -8,19 +8,19 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/vue3';
 
 const showingNavigationDropdown = ref(false);
-</script>
+</script> -->
 
-<template>
+<!-- <template>
     <div>
         <div class="min-h-screen bg-gray-100">
             <nav
                 class="border-b border-gray-100 bg-white"
             >
-                <!-- Primary Navigation Menu -->
+                Primary Navigation Menu
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div class="flex h-16 justify-between">
                         <div class="flex">
-                            <!-- Logo -->
+                             Logo
                             <div class="flex shrink-0 items-center">
                                 <Link :href="route('dashboard')">
                                     <ApplicationLogo
@@ -29,7 +29,7 @@ const showingNavigationDropdown = ref(false);
                                 </Link>
                             </div>
 
-                            <!-- Navigation Links -->
+                            Navigation Links
                             <div
                                 class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex"
                             >
@@ -43,7 +43,7 @@ const showingNavigationDropdown = ref(false);
                         </div>
 
                         <div class="hidden sm:ms-6 sm:flex sm:items-center">
-                            <!-- Settings Dropdown -->
+                             Settings Dropdown
                             <div class="relative ms-3">
                                 <Dropdown align="right" width="48">
                                     <template #trigger>
@@ -88,7 +88,7 @@ const showingNavigationDropdown = ref(false);
                             </div>
                         </div>
 
-                        <!-- Hamburger -->
+                         Hamburger
                         <div class="-me-2 flex items-center sm:hidden">
                             <button
                                 @click="
@@ -131,7 +131,7 @@ const showingNavigationDropdown = ref(false);
                     </div>
                 </div>
 
-                <!-- Responsive Navigation Menu -->
+                 Responsive Navigation Menu
                 <div
                     :class="{
                         block: showingNavigationDropdown,
@@ -148,7 +148,7 @@ const showingNavigationDropdown = ref(false);
                         </ResponsiveNavLink>
                     </div>
 
-                    <!-- Responsive Settings Options -->
+                     Responsive Settings Options
                     <div
                         class="border-t border-gray-200 pb-1 pt-4"
                     >
@@ -179,7 +179,7 @@ const showingNavigationDropdown = ref(false);
                 </div>
             </nav>
 
-            <!-- Page Heading -->
+             Page Heading
             <header
                 class="bg-white shadow"
                 v-if="$slots.header"
@@ -189,10 +189,23 @@ const showingNavigationDropdown = ref(false);
                 </div>
             </header>
 
-            <!-- Page Content -->
+             Page Content
             <main>
                 <slot />
             </main>
         </div>
+    </div>
+</template> -->
+
+<script setup>
+import DashboardNavbar from "@components/Partials/DashboardNavbar.vue";
+import Sidebar from "@components/Partials/Sidebar.vue";
+</script>
+
+<template>
+    <div class="w-screen h-screen flex bg-teal-50">
+        <Sidebar />
+
+        <slot />
     </div>
 </template>

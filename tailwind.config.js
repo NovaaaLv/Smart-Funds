@@ -16,11 +16,14 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                primary: "#2B2B2B",
-                secondary: "#575757",
-            }
+                primary: '#2B2B2B',
+                secondary: '#575757',
+            },
         },
     },
 
-    plugins: [forms],
+    plugins: [
+        forms,
+        require('tailwind-scrollbar'),
+    ],
 };

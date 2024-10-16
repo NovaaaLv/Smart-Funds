@@ -1,29 +1,213 @@
 <script setup>
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import { Head } from "@inertiajs/vue3";
 </script>
 
 <template>
     <Head title="Dashboard" />
 
     <AuthenticatedLayout>
-        <template #header>
-            <h2
-                class="text-xl font-semibold leading-tight text-gray-800"
-            >
-                Dashboard
-            </h2>
-        </template>
+        <template #header> Dashboard </template>
 
-        <div class="py-12">
-            <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                <div
-                    class="overflow-hidden bg-white shadow-sm sm:rounded-lg"
-                >
-                    <div class="p-6 text-gray-900">
-                        You're logged in!
-                    </div>
+        <div
+            class="p-12 w-full grid grid-cols-12 gap-4 grid-rows-12 text-slate-800"
+        >
+            <div
+                class="col-span-3 py-5 rounded-lg bg-slate-800 flex justify-center items-center row-span-2 gap-5 text-white shadow-xl"
+            >
+                <div class="py-3 px-4 bg-slate-500 rounded-xl">
+                    <i class="fa-solid fa-wallet text-2xl"></i>
                 </div>
+                <div class="">
+                    <p class="text-sm">Balance</p>
+                    <p class="font-bold text-xl">Rp. 1.000.000</p>
+                </div>
+            </div>
+            <div
+                class="col-span-3 py-5 rounded-lg bg-emerald-800 flex justify-center items-center row-span-2 gap-5 text-white shadow-xl"
+            >
+                <div class="py-3 px-4 bg-emerald-500 rounded-xl">
+                    <i class="fa-solid fa-hand-holding-dollar text-2xl"></i>
+                </div>
+                <div class="">
+                    <p class="text-sm">Income</p>
+                    <p class="font-bold text-xl">Rp. 1.000.000</p>
+                </div>
+            </div>
+            <div
+                class="col-span-3 py-5 rounded-lg bg-red-800 flex justify-center items-center row-span-2 gap-5 text-white shadow-xl"
+            >
+                <div class="py-3 px-4 bg-red-500 rounded-xl">
+                    <i class="fa-solid fa-coins text-2xl"></i>
+                </div>
+                <div class="">
+                    <p class="text-sm">Expenses</p>
+                    <p class="font-bold text-xl">Rp. 1.000.000</p>
+                </div>
+            </div>
+            <div
+                class="col-span-3 py-5 rounded-lg bg-cyan-800 flex justify-center items-center row-span-2 gap-5 text-white shadow-xl"
+            >
+                <div class="py-3 px-4 bg-cyan-500 rounded-xl">
+                    <i class="fa-solid fa-wind text-2xl"></i>
+                </div>
+                <div class="">
+                    <p class="text-sm">Commodity</p>
+                    <p class="font-bold text-xl">500 Items</p>
+                </div>
+            </div>
+
+            <!--  -->
+            <div
+                class="col-span-8 py-5 bg-white shadow-xl rounded-lg row-span-6 p-5"
+            >
+                Overview
+            </div>
+            <div
+                class="col-span-4 py-5 bg-white shadow-xl rounded-lg row-span-5 p-5 flex flex-col gap-2"
+            >
+                <p class="font-bold">Latest items added</p>
+
+                <!--  -->
+                <div class="w-full h-full overflow-y-auto scrollbar-none">
+                    <table class="table-auto w-full">
+                        <tr class="font-bold pb-1 border-b">
+                            <td class="border-r p-1 text-center border-b">
+                                No
+                            </td>
+                            <td
+                                class="border-l border-r p-1 text-center border-b"
+                            >
+                                Name
+                            </td>
+                            <td
+                                class="border-l border-r p-1 text-center border-b"
+                            >
+                                Amount
+                            </td>
+                            <td
+                                class="border-l border-r p-1 text-center border-b"
+                            >
+                                Price
+                            </td>
+                            <td class="border-l p-1 text-center border-b">
+                                Total
+                            </td>
+                        </tr>
+                        <tr class="text-sm">
+                            <td
+                                class="border-r p-1 text-center border-t border-b"
+                            >
+                                1
+                            </td>
+                            <td
+                                class="border-l border-r p-1 text-center border-t border-b"
+                            >
+                                Makaroni
+                            </td>
+                            <td
+                                class="border-l border-r p-1 text-center border-t border-b"
+                            >
+                                2
+                            </td>
+                            <td
+                                class="border-l border-r p-1 text-center border-t border-b"
+                            >
+                                Rp. 10.000
+                            </td>
+                            <td
+                                class="border-l p-1 text-center border-t border-b"
+                            >
+                                Rp. 20.000
+                            </td>
+                        </tr>
+                        <tr class="text-sm">
+                            <td
+                                class="border-r p-1 text-center border-t border-b"
+                            >
+                                2
+                            </td>
+                            <td
+                                class="border-l border-r p-1 text-center border-t border-b"
+                            >
+                                Makaroni
+                            </td>
+                            <td
+                                class="border-l border-r p-1 text-center border-t border-b"
+                            >
+                                2
+                            </td>
+                            <td
+                                class="border-l border-r p-1 text-center border-t border-b"
+                            >
+                                Rp. 10.000
+                            </td>
+                            <td
+                                class="border-l p-1 text-center border-t border-b"
+                            >
+                                Rp. 20.000
+                            </td>
+                        </tr>
+                        <tr class="text-sm">
+                            <td class="border-r p-1 text-center border-t">3</td>
+                            <td
+                                class="border-l border-r p-1 text-center border-t"
+                            >
+                                Makaroni
+                            </td>
+                            <td
+                                class="border-l border-r p-1 text-center border-t"
+                            >
+                                2
+                            </td>
+                            <td
+                                class="border-l border-r p-1 text-center border-t"
+                            >
+                                Rp. 10.000
+                            </td>
+                            <td class="border-l p-1 text-center border-t">
+                                Rp. 20.000
+                            </td>
+                        </tr>
+                        <tr class="text-sm">
+                            <td class="border-r p-1 text-center border-t">4</td>
+                            <td
+                                class="border-l border-r p-1 text-center border-t"
+                            >
+                                Makaroni
+                            </td>
+                            <td
+                                class="border-l border-r p-1 text-center border-t"
+                            >
+                                2
+                            </td>
+                            <td
+                                class="border-l border-r p-1 text-center border-t"
+                            >
+                                Rp. 10.000
+                            </td>
+                            <td class="border-l p-1 text-center border-t">
+                                Rp. 20.000
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!--  -->
+            <div
+                class="col-span-4 py-5 bg-white shadow-xl rounded-lg row-span-5 p-5"
+            >
+                Last Month
+            </div>
+            <div
+                class="col-span-4 py-5 bg-white shadow-xl rounded-lg row-span-4 p-5"
+            >
+                ror8
+            </div>
+            <div
+                class="col-span-4 py-5 bg-white shadow-xl rounded-lg row-span-4 p-5"
+            >
+                ror9
             </div>
         </div>
     </AuthenticatedLayout>
