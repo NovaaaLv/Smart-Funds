@@ -9,6 +9,8 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ItemsController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -56,4 +58,13 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
+
+
+    // Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'dashboardView'])->name('admin.dashboard');
+    Route::get('/features', [DashboardController::class, 'featuresView'])->name('admin.features');
+
+
+    // Items
+    Route::post('/add-items', [ItemsController::class, 'store'])->name('add-items');
 });

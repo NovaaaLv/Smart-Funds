@@ -11,8 +11,10 @@ class Expenses extends Model
 
     protected $fillable = [
         'user_id',
-        'iteem_name',
+        'item_name',
         'amount',
+        'price',
+        'total',
         'date'
     ];
 

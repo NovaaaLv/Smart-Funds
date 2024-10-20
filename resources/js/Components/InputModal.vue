@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, readonly, ref } from "vue";
 
 const model = defineModel({
   type: String,
