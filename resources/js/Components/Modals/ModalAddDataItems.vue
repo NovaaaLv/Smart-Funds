@@ -17,17 +17,33 @@
         {{ data.errors.item_name }}
       </div>
 
-      <InputModal v-model.number="data.amount" label="Amount" placeholder="Amount" />
+      <InputModal
+        v-model.number="data.amount"
+        type="number"
+        label="Amount"
+        placeholder="Amount"
+      />
       <div v-if="data.errors.amount" class="text-sm text-red-500">
         {{ data.errors.amount }}
       </div>
 
-      <InputModal v-model.number="data.price" label="Price" placeholder="Price" />
+      <InputModal
+        v-model.number="data.price"
+        type="number"
+        label="Price"
+        placeholder="Price"
+      />
       <div v-if="data.errors.price" class="text-sm text-red-500">
         {{ data.errors.price }}
       </div>
 
-      <InputModal v-model="data.total" label="Total" placeholder="Total" />
+      <InputModal
+        v-model="data.total"
+        type="number"
+        label="Total"
+        placeholder="Total"
+        :disabled="true"
+      />
       <div class="w-[100%]">
         <p class="font-bold text-slate-600">Date</p>
         <input
@@ -59,8 +75,9 @@ const year = today.getFullYear();
 const month = String(today.getMonth() + 1).padStart(2, "0");
 const day = String(today.getDate()).padStart(2, "0");
 
-const date = ref(`${year}-${month}-${day}`);
+const date = ref(`${year}-${month}-${day}`); // Mengatur default value tanggal
 
+// Data form dengan useForm dari Inertia
 const data = useForm({
   item_name: null,
   amount: null,
@@ -69,6 +86,7 @@ const data = useForm({
   date: date.value,
 });
 
+// Watcher untuk menghitung total saat amount atau price berubah
 watch(
   () => [data.amount, data.price],
   ([newAmount, newPrice]) => {

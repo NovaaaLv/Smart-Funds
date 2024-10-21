@@ -204,7 +204,7 @@ import Sidebar from "@components/Partials/Sidebar.vue";
 
 <template>
   <div class="w-screen h-screen flex bg-teal-50">
-    <div class="w-[80px]">
+    <div class="w-auto md:w-[80px]">
       <Sidebar />
     </div>
     <slot />
