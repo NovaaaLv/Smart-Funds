@@ -4,7 +4,7 @@
     class="absolute h-screen w-screen bg-slate-800 opacity-40"
   ></button>
   <div
-    class="absolute right-0 top-1/2 transform -translate-y-1/2 w-[30vw] h-[100vh] flex justify-center flex-col rounded-lg p-8 bg-white border-2 shadow-xl"
+    class="absolute right-0 top-1/2 transform -translate-y-1/2 w-[50vw] md:w-[30vw] h-[100vh] flex justify-center flex-col rounded-lg p-8 bg-white border-2 shadow-xl"
   >
     <p class="text-xl font-bold uppercase text-slate-700 text-start">Update Your Item</p>
 
