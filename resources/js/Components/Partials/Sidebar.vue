@@ -6,8 +6,14 @@
       <div class="">LOGO</div>
       <div class="flex gap-3 flex-col">
         <IconLink link="/dashboard" iconClass="fa-solid fa-seedling" label="Dashboard" />
-        <IconLink link="/features" iconClass="fa-solid fa-sitemap" label="Features" />
+        <IconLink link="/expenses" iconClass="fa-solid fa-sitemap" label="Expenses" />
+        <IconLink
+          link="/income"
+          iconClass="fa-solid fa-circle-dollar-to-slot"
+          label="Income"
+        />
         <IconLink link="/settings" iconClass="fa-solid fa-gear" label="Settings" />
+        <i class=""></i>
       </div>
     </div>
     <div class="text-4xl text-teal-600">

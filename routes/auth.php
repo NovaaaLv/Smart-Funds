@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DepositController;
 use App\Http\Controllers\ItemsController;
 use Illuminate\Support\Facades\Route;
 
@@ -62,10 +63,13 @@ Route::middleware('auth')->group(function () {
 
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'dashboardView'])->name('admin.dashboard');
-    Route::get('/features', [DashboardController::class, 'featuresView'])->name('admin.features');
+    Route::get('/expenses', [DashboardController::class, 'expensesView'])->name('admin.expenses');
+    Route::get('/income', [DashboardController::class, 'incomeView'])->name('admin.income');
 
 
     // Items
     Route::post('/add-items', [ItemsController::class, 'store'])->name('add-items');
     Route::post('/update-items/{id}', [ItemsController::class, 'update'])->name('update-items');
+    Route::post('/add-deposits', [DepositController::class, 'store'])->name('add-items');
+    Route::post('/update-income/{id}', [DepositController::class, 'update'])->name('update-items');
 });
