@@ -26,7 +26,7 @@
         <p class="font-bold text-slate-600">Date</p>
         <input
           type="date"
-          v-model="date"
+          v-model="data.date"
           class="text-sm w-full rounded border-slate-600 h-9 text-slate-600 focus:border-slate-800 focus:shadow-xl shadow-sm focus:ring-0 duration-300 ease-in-out transition-all"
         />
       </div>
@@ -48,16 +48,9 @@ import { useForm } from "@inertiajs/vue3";
 
 import InputModal from "@components/InputModal.vue";
 
-const today = new Date();
-const year = today.getFullYear();
-const month = String(today.getMonth() + 1).padStart(2, "0");
-const day = String(today.getDate()).padStart(2, "0");
-
-const date = ref(`${year}-${month}-${day}`); // Mengatur default value tanggal
-
 // Data form dengan useForm dari Inertia
 const data = useForm({
   income: null,
-  date: date.value,
+  date: null,
 });
 </script>

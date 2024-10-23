@@ -5,6 +5,7 @@ import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
+import GuestLayout from "@/Layouts/GuestLayout.vue";
 
 const form = useForm({
   name: "",
@@ -18,6 +19,10 @@ const submit = () => {
     onFinish: () => form.reset("password", "password_confirmation"),
   });
 };
+
+defineOptions({
+  layout: GuestLayout,
+});
 </script>
 
 <template>

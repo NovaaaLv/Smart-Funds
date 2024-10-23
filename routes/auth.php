@@ -12,7 +12,9 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepositController;
 use App\Http\Controllers\ItemsController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
@@ -65,6 +67,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboardView'])->name('admin.dashboard');
     Route::get('/expenses', [DashboardController::class, 'expensesView'])->name('admin.expenses');
     Route::get('/income', [DashboardController::class, 'incomeView'])->name('admin.income');
+    Route::get('/settings', [TestController::class, 'testView'])->name('testView');
+    Route::post('/settings-post', [TestController::class, 'testPost'])->name('testPost');
 
 
     // Items
