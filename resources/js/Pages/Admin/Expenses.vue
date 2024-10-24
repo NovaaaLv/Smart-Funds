@@ -1,14 +1,13 @@
 <script setup>
+import AddExpenses from "@/Components/Expenses/AddExpenses.vue";
+import DeleteExpenses from "@/Components/Expenses/DeleteExpenses.vue";
+import UpdateExpenses from "@/Components/Expenses/UpdateExpenses.vue";
 import { ref, computed } from "vue";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import ModalAddDataItems from "@/Components/Modals/Expenses/ModalAddDataItems.vue";
-import ModalEditDataItems from "@/Components/Modals/Expenses/ModalUpdateDataItems.vue";
 
-const isModalAddOpen = ref(false);
-const isModalUpdateOpen = ref(false);
-
-// State untuk melacak baris yang dipilih
 const selectedItem = ref(null);
+
+const AddExpense = ref(false);
+const UpdateExpense = ref(false);
 
 const props = defineProps({
   expenses: {
@@ -101,7 +100,8 @@ function formatRupiah(angka) {
             </div>
           </div>
           <button
-            @click="isModalAddOpen = true"
+            v-if="!AddExpense"
+            @click="AddExpense = true"
             class="flex items-center gap-5 px-3 py-2 text-white bg-emerald-800 border rounded w-full opacity-95 group-hover:opacity-30 hover:!opacity-95 transition-opacity duration-300"
           >
             <div>
@@ -110,7 +110,8 @@ function formatRupiah(angka) {
             <p class="uppercase text-sm font-bold">Tambah Barang</p>
           </button>
           <button
-            @click="isModalUpdateOpen = true"
+            v-if="!UpdateExpense"
+            @click="UpdateExpense = true"
             :disabled="!selectedItem"
             :class="{
               'opacity-50 cursor-not-allowed': !selectedItem,
@@ -123,19 +124,7 @@ function formatRupiah(angka) {
             </div>
             <p class="uppercase text-sm font-bold">Ubah Barang</p>
           </button>
-          <button
-            :disabled="!selectedItem"
-            :class="{
-              'opacity-50 cursor-not-allowed': !selectedItem,
-              'opacity-95 group-hover:opacity-30 hover:!opacity-95': selectedItem,
-            }"
-            class="flex items-center gap-5 px-3 py-2 text-white bg-red-800 border rounded w-full transition-opacity duration-300"
-          >
-            <div>
-              <i class="fa-solid fa-ban text-white"></i>
-            </div>
-            <p class="uppercase text-sm font-bold">Hapus Barang</p>
-          </button>
+          <DeleteExpenses :selected-item="selectedItem" />
         </div>
       </div>
     </div>
@@ -209,7 +198,21 @@ function formatRupiah(angka) {
         </table>
       </div>
     </div>
-    <div class="col-span-6 lg:col-span-4 bg-white shadow-xl rounded-lg row-span-5">
+
+    <AddExpenses v-if="AddExpense" @remove="AddExpense = false" />
+    <UpdateExpenses
+      v-if="UpdateExpense"
+      @remove="UpdateExpense = false"
+      :selected-item="selectedItem"
+    />
+
+    <div
+      :class="{
+        'col-span-6 lg:col-span-4': !AddExpense,
+        'col-span-6 lg:col-span-12': AddExpense,
+      }"
+      class="bg-white shadow-xl rounded-lg row-span-5"
+    >
       <div class="py-5 px-2">
         <apexchart
           :width="chart.width"
@@ -221,11 +224,4 @@ function formatRupiah(angka) {
       </div>
     </div>
   </div>
-
-  <ModalAddDataItems v-if="isModalAddOpen" @close="isModalAddOpen = false" />
-  <ModalEditDataItems
-    v-if="isModalUpdateOpen"
-    @close="isModalUpdateOpen = false"
-    :selected-item="selectedItem"
-  />
 </template>

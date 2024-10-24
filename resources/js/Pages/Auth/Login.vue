@@ -27,7 +27,7 @@ const submit = () => {
   form.post(route("login"), {
     onFinish: () => form.reset("password"),
     onError: (errors) => {
-      error.value = errors; // Capture errors
+      error.value = errors;
     },
   });
 };
@@ -57,7 +57,6 @@ defineOptions({
 
       <form @submit.prevent="submit" class="items-center flex flex-col gap-3">
         <div class="w-full space-y-2">
-          <InputLabel for="email" value="Email" />
           <TextInput
             id="email"
             type="email"
@@ -72,7 +71,6 @@ defineOptions({
         </div>
 
         <div class="w-full space-y-2">
-          <InputLabel for="password" value="Password" />
           <TextInput
             id="password"
             placeholder="Your Password"
@@ -85,30 +83,29 @@ defineOptions({
           <InputError class="mt-2" :message="form.errors.password" />
         </div>
 
-        <div class="mt-4 block self-end">
+        <div class="mt-4 block self-start">
           <label class="flex items-center">
             <Checkbox name="remember" v-model:checked="form.remember" />
             <span class="ms-2 text-sm text-gray-600">Remember me</span>
           </label>
         </div>
 
-        <div class="mt-4 flex items-center justify-end">
+        <div class="self-end">
           <Link
             v-if="canResetPassword"
             :href="route('password.request')"
-            class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 text-end"
           >
             Forgot your password?
           </Link>
-
-          <PrimaryButton
-            class="ms-4"
-            :class="{ 'opacity-25': form.processing }"
-            :disabled="form.processing"
-          >
-            Log in
-          </PrimaryButton>
         </div>
+        <button
+          class="ms-4 w-full bg-cyan-600 rounded-lg py-2 flex justify-center text-white border border-cyan-600 hover:bg-white hover:text-cyan-600 duration-300 transition-all ease-in-out"
+          :class="{ 'opacity-25': form.processing }"
+          :disabled="form.processing"
+        >
+          Log in
+        </button>
       </form>
     </div>
 

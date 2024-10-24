@@ -83,7 +83,7 @@ const data = useForm({
   amount: null,
   price: null,
   total: 0,
-  date: date.valueyyy,
+  date: date.value,
 });
 
 // Watcher untuk menghitung total saat amount atau price berubah

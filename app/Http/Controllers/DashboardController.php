@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Charts\MonthlyExpensesChart;
+use App\Charts\MonthlyIncomeChart;
 use App\Models\Deposit;
 use App\Models\Expenses;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class DashboardController extends Controller
             'chart' => $chart->build()
         ]);
     }
-    public function incomeView(MonthlyExpensesChart $chart)
+    public function incomeView(MonthlyIncomeChart $chart)
     {
 
         $itemsPage = 10;

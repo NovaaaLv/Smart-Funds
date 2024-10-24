@@ -15,7 +15,7 @@ class ItemsController extends Controller
             'amount' => 'required|numeric|min:1',
             'price' => 'required|numeric',
             'total' => 'required|numeric',
-            'date' => 'required|date'
+            'date' => 'required'
         ]);
 
         $validatedData = array_merge($validatedData, ['user_id' => Auth::id()]);
@@ -45,5 +45,17 @@ class ItemsController extends Controller
         $expense->update($validatedData);
 
         return redirect()->back()->with('success', 'Data berhasil diupdate!');
+    }
+
+    public function destroy($id)
+    {
+        $expense = Expenses::findOrFail($id);
+
+        if ($expense->user_id !== Auth::id()) {
+            return redirect()->back()->with('error', 'Anda tidak memiliki izin untuk menghapus item ini.');
+        }
+
+        $expense->delete();
+        return redirect()->back()->with('success', 'Data berhasil dihapus!');
     }
 }

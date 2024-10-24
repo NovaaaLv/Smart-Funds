@@ -39,7 +39,6 @@ defineOptions({
       </div>
       <form @submit.prevent="submit" class="items-center flex flex-col gap-3">
         <div class="w-full space-y-2">
-          <InputLabel for="name" value="Name" />
           <TextInput
             id="name"
             type="text"
@@ -53,7 +52,6 @@ defineOptions({
           <InputError class="mt-2" :message="form.errors.name" />
         </div>
         <div class="w-full space-y-2">
-          <InputLabel for="email" value="Email" />
           <TextInput
             id="email"
             type="email"
@@ -66,7 +64,6 @@ defineOptions({
           <InputError class="mt-2" :message="form.errors.email" />
         </div>
         <div class="w-full space-y-2">
-          <InputLabel for="password" value="Password" />
           <TextInput
             id="password"
             type="password"
@@ -79,7 +76,6 @@ defineOptions({
           <InputError class="mt-2" :message="form.errors.password" />
         </div>
         <div class="w-full space-y-2">
-          <InputLabel for="password_confirmation" value="Confirm Password" />
           <TextInput
             id="password_confirmation"
             type="password"
@@ -102,7 +98,7 @@ defineOptions({
         <div class="w-full flex justify-end">
           <button
             type="submit"
-            class="rounded-lg px-7 py-1 border hover:bg-teal-600 hover:text-white bg-white text-teal-600 border-teal-600 transition-all duration-300 font-semibold"
+            class="rounded-lg px-7 py-1 border hover:bg-cyan-600 hover:text-white bg-white text-cyan-600 border-cyan-600 transition-all duration-300 font-semibold"
             :class="{ 'opacity-25': form.processing }"
             :disabled="form.processing"
           >

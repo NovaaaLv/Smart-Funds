@@ -72,8 +72,11 @@ Route::middleware('auth')->group(function () {
 
 
     // Items
-    Route::post('/add-items', [ItemsController::class, 'store'])->name('add-items');
-    Route::post('/update-items/{id}', [ItemsController::class, 'update'])->name('update-items');
-    Route::post('/add-deposits', [DepositController::class, 'store'])->name('add-items');
-    Route::post('/update-income/{id}', [DepositController::class, 'update'])->name('update-items');
+    Route::post('/add-expenses', [ItemsController::class, 'store'])->name('add-expenses');
+    Route::post('/update-expenses/{id}', [ItemsController::class, 'update'])->name('update-expenses');
+    Route::delete('/delete-expenses/{id}', [ItemsController::class, 'destroy'])->name('destroy-expenses');
+
+
+    Route::post('/add-deposits', [DepositController::class, 'store'])->name('add-deposits');
+    Route::post('/update-deposits/{id}', [DepositController::class, 'update'])->name('update-items');
 });

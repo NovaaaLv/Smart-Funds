@@ -20,8 +20,9 @@ const form = useForm({
 });
 
 function submit() {
-  form.post(route("testPost"));
-
-  onSu;
+  form.post(route("testPost")),
+    {
+      onSucces() {},
+    };
 }
 </script>

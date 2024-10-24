@@ -1,13 +1,10 @@
 <script setup>
 import { ref, computed } from "vue";
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import ModalAddDataIncome from "@/Components/Modals/Income/ModalAddDataIncome.vue";
-import ModalUpdateDataIncome from "@/Components/Modals/Income/ModalUpdateDataIncome.vue";
+import AddDeposit from "@/Components/Deposit/AddDeposit.vue";
+import UpdateDeposit from "@/Components/Deposit/UpdateDeposit.vue";
 
-const isModalAddOpen = ref(false);
-const isModalUpdateOpen = ref(false);
-
-// State untuk melacak baris yang dipilih
+const AddDeposits = ref(false);
+const UpdateDeposits = ref(false);
 const selectedItem = ref(null);
 
 const props = defineProps({
@@ -63,10 +60,10 @@ function formatRupiah(angka) {
   <Head title="Income" />
 
   <div
-    class="w-screen overflow-x-hidden grid grid-cols-2 md:grid-cols-8 lg:grid-cols-12 gap-4 text-slate-800 p-4 md:p-8 lg:p-12"
+    class="w-screen overflow-x-hidden grid grid-cols-6 md:grid-cols-8 lg:grid-cols-12 gap-4 text-slate-800 p-4 md:p-8 lg:p-12"
   >
     <div
-      class="col-span-1 md:col-span-2 lg:col-span-3 row-span-1 shadow-xl rounded-lg flex bg-emerald-800 text-white items-center gap-3 px-5 py-2"
+      class="col-span-3 md:col-span-2 lg:col-span-3 row-span-1 shadow-xl rounded-lg flex bg-emerald-800 text-white items-center gap-3 px-5 py-2"
     >
       <div class="py-3 px-4 bg-emerald-500 rounded-xl">
         <i class="fa-solid fa-hand-holding-dollar text-lg md:text-xl lg:text-2xl"></i>
@@ -79,7 +76,7 @@ function formatRupiah(angka) {
       </div>
     </div>
     <div
-      class="col-span-1 md:col-span-2 lg:col-span-3 shadow-xl rounded-lg row-span-1 flex bg-cyan-800 text-white items-center gap-3 px-5 py-2"
+      class="col-span-3 md:col-span-2 lg:col-span-3 shadow-xl rounded-lg row-span-1 flex bg-cyan-800 text-white items-center gap-3 px-5 py-2"
     >
       <div class="py-3 px-4 bg-cyan-500 rounded-xl">
         <i class="fa-brands fa-dropbox text-lg md:text-xl lg:text-2xl"></i>
@@ -90,7 +87,7 @@ function formatRupiah(angka) {
       </div>
     </div>
     <div
-      class="col-span-2 md:col-span-2 lg:col-span-3 shadow-xl rounded-lg row-span-1 bg-orange-800 flex items-center gap-3 text-white px-5 py-2"
+      class="col-span-6 md:col-span-2 lg:col-span-3 shadow-xl rounded-lg row-span-1 bg-orange-800 flex items-center gap-3 text-white px-5 py-2"
     >
       <div class="py-3 px-4 bg-orange-500 rounded-xl">
         <i class="fa-brands fa-dropbox text-lg md:text-xl lg:text-2xl"></i>
@@ -124,27 +121,29 @@ function formatRupiah(angka) {
             </div>
           </div>
           <button
-            @click="isModalAddOpen = true"
-            class="flex items-center gap-5 px-3 py-2 text-xs md:text-sm font-bold text-white bg-emerald-800 border rounded w-full opacity-95 group-hover:opacity-30 hover:!opacity-95 transition-opacity duration-300"
+            v-if="!AddDeposits"
+            @click="AddDeposits = true"
+            class="flex items-center gap-5 px-3 py-2 text-white bg-emerald-800 border rounded w-full opacity-95 group-hover:opacity-30 hover:!opacity-95 transition-opacity duration-300"
           >
             <div>
-              <i class="fa-solid fa-plus text-lg md:text-xl"></i>
+              <i class="fa-solid fa-plus text-xl text-white"></i>
             </div>
-            <p class="uppercase">Add Items</p>
+            <p class="uppercase text-sm font-bold">Add Income</p>
           </button>
           <button
-            @click="isModalUpdateOpen = true"
+            v-if="!UpdateDeposits"
+            @click="UpdateDeposits = true"
             :disabled="!selectedItem"
             :class="{
               'opacity-50 cursor-not-allowed': !selectedItem,
               'opacity-95 group-hover:opacity-30 hover:!opacity-95': selectedItem,
             }"
-            class="flex items-center gap-5 px-3 py-2 text-xs md:text-sm font-bold text-white bg-cyan-800 border rounded w-full transition-opacity duration-300"
+            class="flex items-center gap-5 px-3 py-2 text-white bg-cyan-800 border rounded w-full transition-opacity duration-300"
           >
             <div>
-              <i class="fa-solid fa-pen text-lg md:text-xl"></i>
+              <i class="fa-solid fa-pen text-white"></i>
             </div>
-            <p class="uppercase">Update Items</p>
+            <p class="uppercase text-sm font-bold">Update Income</p>
           </button>
           <button
             :disabled="!selectedItem"
@@ -157,14 +156,14 @@ function formatRupiah(angka) {
             <div>
               <i class="fa-solid fa-ban text-lg md:text-xl"></i>
             </div>
-            <p class="uppercase">Delete Items</p>
+            <p class="uppercase">Delete Income</p>
           </button>
         </div>
       </div>
     </div>
 
     <div
-      class="col-span-2 md:col-span-6 lg:col-span-9 bg-white shadow-xl rounded-lg row-span-10 p-5"
+      class="col-span-4 md:col-span-6 lg:col-span-9 bg-white shadow-xl rounded-lg row-span-10 p-5"
     >
       <p class="font-bold px-2 uppercase text-xs md:text-sm text-slate-700">
         deposit list
@@ -216,8 +215,20 @@ function formatRupiah(angka) {
         </table>
       </div>
     </div>
+
+    <AddDeposit v-if="AddDeposits" @remove="AddDeposits = false" />
+    <UpdateDeposit
+      v-if="UpdateDeposits"
+      @remove="UpdateDeposits = false"
+      :selected-item="selectedItem"
+    />
+
     <div
-      class="col-span-2 md:col-span-2 lg:col-span-3 bg-white shadow-xl rounded-lg row-span-5"
+      :class="{
+        'col-span-6 lg:col-span-3': !AddDeposits,
+        'col-span-6 lg:col-span-12': AddDeposits,
+      }"
+      class="bg-white shadow-xl rounded-lg row-span-5"
     >
       <div class="py-5 px-2">
         <apexchart
@@ -230,11 +241,4 @@ function formatRupiah(angka) {
       </div>
     </div>
   </div>
-
-  <ModalAddDataIncome v-if="isModalAddOpen" @close="isModalAddOpen = false" />
-  <ModalUpdateDataIncome
-    v-if="isModalUpdateOpen"
-    @close="isModalUpdateOpen = false"
-    :selected-item="selectedItem"
-  />
 </template>
