@@ -17,11 +17,15 @@
         <IconLink link="/settings" iconClass="fa-solid fa-gear" label="Settings" />
       </div>
     </div>
-    <div class="text-4xl text-teal-600">
-      <i class="fa-solid fa-circle-user"></i>
+    <div class="w-full px-2">
+      <button
+        @click="signOut"
+        class="bg-teal-600 rounded text-white text-xs w-full h-full border border-teal-600 transition-all duration-300 hover:bg-white hover:text-teal-600"
+      >
+        Sign Out
+      </button>
     </div>
   </div>
-  <!--  -->
 
   <div
     class="flex md:hidden justify-around items-center py-5 shadow-[0_4px_20px_rgba(0,0,0,0.2)] rounded-tr-[30px] rounded-tl-[30px] fixed bottom-0 left-4 right-8 bg-white px-7"
@@ -37,13 +41,23 @@
       <IconLink link="/settings" iconClass="fa-solid fa-gear" />
     </div>
 
-    <div class="text-4xl text-teal-600">
-      <i class="fa-solid fa-circle-user"></i>
+    <div class="w-full px-2">
+      <button
+        @click="signOut"
+        class="bg-teal-600 rounded text-white text-xs w-full h-full border border-teal-600 transition-all duration-300 hover:bg-white hover:text-teal-600"
+      >
+        Sign Out
+      </button>
     </div>
   </div>
 </template>
 
 <script setup>
+import { Inertia } from "@inertiajs/inertia";
 import IconLink from "@components/IconLink.vue";
 import logo from "@icons/SmartFunds.svg";
+
+const signOut = () => {
+  Inertia.post("/logout");
+};
 </script>

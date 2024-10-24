@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\DashboardChart;
 use App\Charts\MonthlyExpensesChart;
 use App\Charts\MonthlyIncomeChart;
 use App\Models\Deposit;
@@ -13,9 +14,17 @@ use Inertia\Inertia;
 class DashboardController extends Controller
 {
 
-    public function dashboardView()
+    public function dashboardView(DashboardChart $chart)
     {
-        return Inertia::render('Dashboard');
+        $userId = Auth::id();
+        $expenses = Expenses::where('user_id', $userId)->get();
+        $deposits = Deposit::where('user_id', $userId)->get();
+
+        return Inertia::render('Dashboard', [
+            'deposits' => $deposits,
+            'expenses' => $expenses,
+            'chart' => $chart->build()
+        ]);
     }
     public function expensesView(MonthlyExpensesChart $chart)
     {
