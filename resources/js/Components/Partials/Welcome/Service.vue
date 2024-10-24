@@ -4,6 +4,13 @@ import dolarGreen from "@icons/dolar-green.png";
 import homeBlue from "@icons/home-blue.png";
 import pizzaChartRed from "@icons/pizza-char-red.png";
 import prasastiYellow from "@icons/prasasti-yellow.png";
+import { onMounted } from "vue";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+onMounted(() => {
+  AOS.init();
+});
 </script>
 
 <template>
@@ -23,7 +30,11 @@ import prasastiYellow from "@icons/prasasti-yellow.png";
         </span>
         <div class="border-t-2 border-teal-600 w-[70px] mt-3"></div>
       </div>
-      <p class="font-bold text-4xl max-w-[500px]">Your All-In-One Financial Dashboard</p>
+      <div data-aos="fade-left" data-aos-offset="300" data-aos-easing="ease-in-sine">
+        <p class="font-bold text-4xl max-w-[500px]">
+          Your All-In-One Financial Dashboard
+        </p>
+      </div>
       <p class="text-sm text-secondary max-w-[500px]">
         From managing income and expenses to viewing insightful charts, everything you
         need is at your fingertips. Our platform is designed to make managing money

@@ -1,5 +1,12 @@
 <script setup>
+import { onMounted } from "vue";
 import hero from "@images/hero.png";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+onMounted(() => {
+  AOS.init();
+});
 </script>
 
 <template>
@@ -13,9 +20,15 @@ import hero from "@images/hero.png";
       <div class="h-full order-2 md:order-1">
         <div class="flex flex-col h-full gap-16">
           <div class="space-y-6">
-            <p class="text-4xl md:text-6xl max-w-[450px] font-semibold capitalize">
-              create your <span class="text-teal-600"> own </span>financial reports
-            </p>
+            <div
+              data-aos="fade-right"
+              data-aos-offset="300"
+              data-aos-easing="ease-in-sine"
+            >
+              <p class="text-4xl md:text-6xl max-w-[450px] font-semibold capitalize">
+                create your <span class="text-teal-600"> own </span>financial reports
+              </p>
+            </div>
             <p class="max-w-full md:max-w-[350px] text-sm text-secondary">
               Take control of your finances with ease by creating your own financial
               report. Our platform allows you to track income, expenses, and manage your

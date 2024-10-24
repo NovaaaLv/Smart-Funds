@@ -1,5 +1,12 @@
 <script setup>
 import invesment from "@images/investment.png";
+import { onMounted } from "vue";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+onMounted(() => {
+  AOS.init();
+});
 </script>
 
 <template>
@@ -12,9 +19,11 @@ import invesment from "@images/investment.png";
         </span>
         <div class="border-t-2 border-teal-600 w-[70px] mt-3"></div>
       </div>
-      <p class="font-bold text-4xl max-w-[500px] capitalize">
-        Unlock the Full Potential of Your Finances
-      </p>
+      <div data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+        <p class="font-bold text-4xl max-w-[500px] capitalize">
+          Unlock the Full Potential of Your Finances
+        </p>
+      </div>
       <p class="text-sm text-secondary max-w-[500px]">
         Discover how our platform simplifies managing your finances. From tracking daily
         expenses to generating detailed reports, our website empowers you to take control
