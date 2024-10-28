@@ -1,10 +1,9 @@
 <script setup>
 import Checkbox from "@/Components/Checkbox.vue";
-import BankImage from "@images/bank-image.svg";
+import logIMG from "@images/LOGREGIMG.svg";
 import InputError from "@/Components/InputError.vue";
-import InputLabel from "@/Components/InputLabel.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+import imgSignUp from "@icons/resume.png";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 import GuestLayout from "@/Layouts/GuestLayout.vue";
 
@@ -40,8 +39,12 @@ defineOptions({
 <template>
   <Head title="Log in" />
 
-  <div class="flex justify-center items-center h-screen gap-5 w-full">
-    <div class="p-4 rounded-lg border-slate-200 border space-y-6 w-1/3">
+  <div
+    class="flex justify-center items-center h-screen gap-24 w-full flex-col-reverse md:flex-row"
+  >
+    <div
+      class="p-4 rounded-lg border-slate-200 border space-y-6 w-[60%] md:w-1/3 relative"
+    >
       <!-- Error message if login fails -->
       <div v-if="error" class="bg-red-100 text-red-600 p-3 rounded-lg text-sm">
         {{ error }}
@@ -51,8 +54,8 @@ defineOptions({
         <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
           {{ status }}
         </div>
-        <p class="text-sm text-slate-500">Login your account to manage your finance</p>
-        <p class="font-bold text-blue-600 text-xl">Login</p>
+        <p class="text-sm text-slate-500">Sign In your account to manage your finance</p>
+        <p class="font-bold text-teal-600 text-xl">Sign In</p>
       </div>
 
       <form @submit.prevent="submit" class="items-center flex flex-col gap-3">
@@ -100,17 +103,57 @@ defineOptions({
           </Link>
         </div>
         <button
-          class="ms-4 w-full bg-cyan-600 rounded-lg py-2 flex justify-center text-white border border-cyan-600 hover:bg-white hover:text-cyan-600 duration-300 transition-all ease-in-out"
+          class="ms-4 w-full bg-teal-600 rounded-lg py-2 flex justify-center text-white border border-teal-600 hover:bg-white hover:text-teal-600 duration-300 transition-all ease-in-out"
           :class="{ 'opacity-25': form.processing }"
           :disabled="form.processing"
         >
           Log in
         </button>
       </form>
+
+      <!-- Register -->
+      <Link
+        :href="route('register')"
+        class="absolute w-[70px] h-[60px] bg-teal-600 top-[78px] opacity-50 left-[-70px] rounded-tl-3xl rounded-bl-3xl items-center justify-start pl-7 cursor-pointer hover:opacity-95 hover:w-[100px] md:hover:w-[150px] hover:left-[-100px] md:hover:left-[-150px] transition-all duration-300 ease-in-out container-sign-up gap-4 hidden md:flex"
+      >
+        <img :src="imgSignUp" alt="" class="w-[30px] h-[30px]" />
+        <span class="sign-up">Sign Up</span>
+      </Link>
     </div>
 
-    <div class="w-[500px]">
-      <img :src="BankImage" alt="Banking Illustration" class="w-full" />
+    <div class="w-[300px] md:w-[450px]">
+      <img :src="logIMG" alt="Banking Illustration" class="w-full block" />
     </div>
   </div>
 </template>
+
+<style scoped>
+@keyframes slideInText {
+  0% {
+    opacity: 0;
+    display: none;
+    transform: translateX(80px);
+  }
+  100% {
+    opacity: 1;
+    display: block;
+    transform: translateX(0);
+  }
+}
+
+.sign-up {
+  color: white;
+  font-weight: bold;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-40px);
+  transition: visibility 0s linear 0.3s;
+}
+
+.container-sign-up:hover .sign-up {
+  visibility: visible;
+  display: block;
+  opacity: 1;
+  animation: slideInText 0.3s ease-in forwards;
+}
+</style>

@@ -30,6 +30,6 @@ defineExpose({ focus: () => input.value.focus() });
     type="text"
     v-model="model"
     :placeholder="placeholder"
-    class="text-sm w-full rounded border-slate-600 h-8 text-slate-600 focus:border-slate-800 focus:shadow-xl shadow-sm focus:ring-0 duration-300 ease-in-out transition-all"
+    class="text-sm w-full rounded border-slate-300 h-8 text-slate-600 focus:border-slate-600 ring-0 focus:ring-0 duration-500 ease-in-out transition-all outline-none"
   />
 </template>

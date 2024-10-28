@@ -1,8 +1,6 @@
 <script setup>
-import Bank from "@images/bank-image.svg";
+import RegisterIMG from "@images/LOGREGIMG.svg";
 import InputError from "@/Components/InputError.vue";
-import InputLabel from "@/Components/InputLabel.vue";
-import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { Head, Link, useForm } from "@inertiajs/vue3";
 import GuestLayout from "@/Layouts/GuestLayout.vue";
@@ -28,21 +26,23 @@ defineOptions({
 <template>
   <Head title="Register" />
 
-  <div class="flex justify-center items-center h-screen gap-5 w-full">
-    <div class="w-[500px]">
-      <img :src="Bank" alt="Banking Illustration" class="w-full" />
+  <div
+    class="flex justify-center items-center h-screen gap-10 w-full flex-col md:flex-row mt-[200px] md:mt-0"
+  >
+    <div class="w-[300px] md:w-[450px]">
+      <img :src="RegisterIMG" alt="Banking Illustration" class="w-full" />
     </div>
-    <div class="p-4 rounded-lg border-slate-200 border space-y-6 w-1/3">
+    <div class="p-4 rounded-lg border-slate-200 border space-y-6 md:w-1/3 w-[85%]">
       <div>
         <p class="text-sm text-slate-500">Make account to manage your financex</p>
-        <p class="font-bold text-blue-600 text-xl">Register</p>
+        <p class="font-bold text-teal-600 text-xl">Sign Up</p>
       </div>
       <form @submit.prevent="submit" class="items-center flex flex-col gap-3">
         <div class="w-full space-y-2">
           <TextInput
             id="name"
             type="text"
-            class="rounded-lg px-4 py-[3px] border transition-all duration-300 outline-none w-full"
+            class=""
             placeholder="Your Name"
             v-model="form.name"
             required
@@ -56,7 +56,7 @@ defineOptions({
             id="email"
             type="email"
             placeholder="Your Email"
-            class="rounded-lg px-4 py-[3px] border focus:border-slate-500 transition-all duration-300 outline-none w-full"
+            class=""
             v-model="form.email"
             required
             autocomplete="username"
@@ -68,7 +68,7 @@ defineOptions({
             id="password"
             type="password"
             placeholder="Your Password"
-            class="rounded-lg px-4 py-[3px] border focus:border-slate-500 transition-all duration-300 outline-none w-full"
+            class=""
             v-model="form.password"
             required
             autocomplete="new-password"
@@ -80,7 +80,7 @@ defineOptions({
             id="password_confirmation"
             type="password"
             placeholder="Confirm Password"
-            class="rounded-lg px-4 py-[3px] border focus:border-slate-500 transition-all duration-300 outline-none w-full"
+            class=""
             v-model="form.password_confirmation"
             required
             autocomplete="new-password"
@@ -92,13 +92,13 @@ defineOptions({
             :href="route('login')"
             class="text-sm text-slate-500 hover:text-slate-700 hover:underline transition-all duration-300"
           >
-            Have an account? Login
+            Have an account? Sign In
           </Link>
         </div>
         <div class="w-full flex justify-end">
           <button
             type="submit"
-            class="rounded-lg px-7 py-1 border hover:bg-cyan-600 hover:text-white bg-white text-cyan-600 border-cyan-600 transition-all duration-300 font-semibold"
+            class="rounded-lg px-7 py-1 border hover:bg-teal-600 hover:text-white bg-white text-teal-600 border-teal-600 transition-all duration-300 font-semibold"
             :class="{ 'opacity-25': form.processing }"
             :disabled="form.processing"
           >
