@@ -2,27 +2,50 @@
 import AddExpenses from "@/Components/Expenses/AddExpenses.vue";
 import DeleteExpenses from "@/Components/Expenses/DeleteExpenses.vue";
 import UpdateExpenses from "@/Components/Expenses/UpdateExpenses.vue";
-import { ref, computed } from "vue";
+import { onMounted, ref, computed } from "vue";
+import { Inertia } from "@inertiajs/inertia";
 
-const selectedItem = ref(null);
-
+const selectedItem = ref({});
 const AddExpense = ref(false);
 const UpdateExpense = ref(false);
 
+// Definisikan props yang diperlukan
 const props = defineProps({
   expenses: {
     type: Array,
     required: true,
   },
+  selectedItem: {
+    type: Object,
+    default: null,
+  },
   chart: Object,
 });
+
+// Ref untuk data expenses
+const expenses = ref([]);
+
+// // Fungsi untuk memuat expenses dari server
+// const loadExpenses = async () => {
+//   Inertia.get(
+//     route("admin.expenses"),
+//     {},
+//     {
+//       preserveState: true,
+//       only: ["expenses"],
+//       onSuccess: ({ props }) => {
+//         expenses.value = props.expenses;
+//       },
+//     }
+//   );
+// };
 
 // Fungsi untuk memilih item dari tabel
 const selectItem = (expense) => {
   selectedItem.value = expense;
 };
 
-// Fungsi untuk menjumlahkan semua total expenses
+// Fungsi untuk menghitung total expenses
 const totalExpenses = computed(() => {
   return props.expenses.reduce((sum, expense) => {
     const validTotal =
@@ -31,6 +54,7 @@ const totalExpenses = computed(() => {
   }, 0);
 });
 
+// Fungsi untuk menghitung total items
 const totalItems = computed(() => {
   return props.expenses.reduce((sum, expense) => {
     const validItems =
@@ -41,6 +65,7 @@ const totalItems = computed(() => {
   }, 0);
 });
 
+// Fungsi untuk format Rupiah
 function formatRupiah(angka) {
   return new Intl.NumberFormat("id-ID", {
     style: "currency",
@@ -52,7 +77,6 @@ function formatRupiah(angka) {
 
 <template>
   <Head title="Expenses" />
-
   <div
     class="w-screen overflow-x-hidden grid grid-cols-6 lg:grid-cols-12 gap-4 text-slate-800 p-4 md:p-8 lg:p-12"
   >
@@ -62,9 +86,9 @@ function formatRupiah(angka) {
       <div class="py-3 px-4 bg-red-500 rounded-xl">
         <i class="fa-solid fa-coins text-2xl"></i>
       </div>
-      <div class="">
+      <div>
         <p class="text-sm">Total Pengeluaran</p>
-        <p class="font-bold text-xl">{{ formatRupiah(totalExpenses) }}</p>
+        <p class="font-bold text-xl">{{ formatRupiah(totalExpenses.value) }}</p>
       </div>
     </div>
     <div
@@ -73,9 +97,9 @@ function formatRupiah(angka) {
       <div class="py-3 px-4 bg-cyan-500 rounded-xl">
         <i class="fa-brands fa-dropbox text-2xl"></i>
       </div>
-      <div class="">
+      <div>
         <p class="text-sm">Komoditas</p>
-        <p class="font-bold text-xl">{{ totalItems }} Item</p>
+        <p class="font-bold text-xl">{{ totalItems.value }} Item</p>
       </div>
     </div>
 
@@ -104,9 +128,7 @@ function formatRupiah(angka) {
             @click="AddExpense = true"
             class="flex items-center gap-5 px-3 py-2 text-white bg-emerald-800 border rounded w-full opacity-95 group-hover:opacity-30 hover:!opacity-95 transition-opacity duration-300"
           >
-            <div>
-              <i class="fa-solid fa-plus text-xl text-white"></i>
-            </div>
+            <div><i class="fa-solid fa-plus text-xl text-white"></i></div>
             <p class="uppercase text-sm font-bold">Tambah Barang</p>
           </button>
           <button
@@ -119,9 +141,7 @@ function formatRupiah(angka) {
             }"
             class="flex items-center gap-5 px-3 py-2 text-white bg-cyan-800 border rounded w-full transition-opacity duration-300"
           >
-            <div>
-              <i class="fa-solid fa-pen text-white"></i>
-            </div>
+            <div><i class="fa-solid fa-pen text-white"></i></div>
             <p class="uppercase text-sm font-bold">Ubah Barang</p>
           </button>
           <DeleteExpenses :selected-item="selectedItem" />
@@ -202,26 +222,16 @@ function formatRupiah(angka) {
     <AddExpenses v-if="AddExpense" @remove="AddExpense = false" />
     <UpdateExpenses
       v-if="UpdateExpense"
-      @remove="UpdateExpense = false"
       :selected-item="selectedItem"
+      @refresh="loadExpenses"
+      @close="UpdateExpense = false"
     />
 
     <div
       :class="{
         'col-span-6 lg:col-span-4': !AddExpense,
-        'col-span-6 lg:col-span-12': AddExpense,
+        'col-span-6 lg:col-span-4 opacity-30': AddExpense,
       }"
-      class="bg-white shadow-xl rounded-lg row-span-5"
-    >
-      <div class="py-5 px-2">
-        <apexchart
-          :width="chart.width"
-          :height="chart.height"
-          :type="chart.type"
-          :options="chart.options"
-          :series="chart.series"
-        ></apexchart>
-      </div>
-    </div>
+    ></div>
   </div>
 </template>

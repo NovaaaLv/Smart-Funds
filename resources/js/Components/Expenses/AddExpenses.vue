@@ -29,6 +29,7 @@
         <InputLabel label="Date" placeholder="Date" type="date" v-model="form.date" />
         <button
           class="bg-teal-600 text-white rounded-lg w-full font-bold py-1 text-sm mt-2"
+          :disabled="form.processing"
         >
           SUBMIT
         </button>
@@ -42,20 +43,21 @@ import InputLabel from "@/Components/InputLabel.vue";
 import { useForm } from "@inertiajs/vue3";
 import { watch } from "vue";
 
-const emit = defineEmits(["remove"]);
+const emit = defineEmits(["remove", "refreshTable"]);
 
 const handleRemove = () => {
   emit("remove");
 };
 
 const form = useForm({
-  item_name: null,
+  item_name: "",
   amount: null,
   price: null,
-  total: null,
-  date: null,
+  total: 0,
+  date: "",
 });
 
+// Watcher to calculate total when amount or price changes
 watch(
   () => [form.amount, form.price],
   ([newAmount, newPrice]) => {
@@ -67,7 +69,32 @@ watch(
   }
 );
 
+
 function submit() {
-  form.post(route("add-expenses"));
+  if (!isValidDate(form.date)) {
+    alert("Please select a valid date.");
+    return;
+  }
+
+  form.post(route("add-expenses"), {
+    onSuccess: () => {
+      alert("Expense added successfully!");
+      form.reset();
+      emit("refreshTable");
+    },
+    onError: (errors) => {
+      const errorMessage = errors
+        ? Object.values(errors).flat().join(", ")
+        : "An unexpected error occurred.";
+      alert(`Failed to add expense: ${errorMessage}`);
+      console.error(errors);
+    },
+  });
+}
+
+// Function to validate date format (YYYY-MM-DD)
+function isValidDate(dateString) {
+  const datePattern = /^\d{4}-\d{2}-\d{2}$/; // Regex for YYYY-MM-DD
+  return datePattern.test(dateString);
 }
 </script>

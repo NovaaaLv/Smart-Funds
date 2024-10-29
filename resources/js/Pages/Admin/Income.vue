@@ -5,7 +5,7 @@ import UpdateDeposit from "@/Components/Deposit/UpdateDeposit.vue";
 
 const AddDeposits = ref(false);
 const UpdateDeposits = ref(false);
-const selectedItem = ref(null);
+const selectedItem = ref({});
 
 const props = defineProps({
   deposits: {
@@ -15,6 +15,10 @@ const props = defineProps({
   expenses: {
     type: Array,
     required: true,
+  },
+  selectedItem: {
+    type: Object,
+    default: null,
   },
   chart: Object,
 });
@@ -145,7 +149,7 @@ function formatRupiah(angka) {
             </div>
             <p class="uppercase text-sm font-bold">Update Income</p>
           </button>
-          <button
+          <!-- <button
             :disabled="!selectedItem"
             :class="{
               'opacity-50 cursor-not-allowed': !selectedItem,
@@ -157,7 +161,7 @@ function formatRupiah(angka) {
               <i class="fa-solid fa-ban text-lg md:text-xl"></i>
             </div>
             <p class="uppercase">Delete Income</p>
-          </button>
+          </button> -->
         </div>
       </div>
     </div>
@@ -219,8 +223,8 @@ function formatRupiah(angka) {
     <AddDeposit v-if="AddDeposits" @remove="AddDeposits = false" />
     <UpdateDeposit
       v-if="UpdateDeposits"
-      @remove="UpdateDeposits = false"
       :selected-item="selectedItem"
+      @close="UpdateDeposits = false"
     />
 
     <div

@@ -74,9 +74,10 @@ Route::middleware('auth')->group(function () {
     // Items
     Route::post('/add-expenses', [ItemsController::class, 'store'])->name('add-expenses');
     Route::post('/update-expenses/{id}', [ItemsController::class, 'update'])->name('update-expenses');
-    Route::delete('/delete-expenses/{id}', [ItemsController::class, 'destroy'])->name('destroy-expenses');
+    Route::delete('/delete-expenses/{id}/delete', [ItemsController::class, 'destroy'])->name('destroy-expenses');
 
-
+    // Deposit
     Route::post('/add-deposits', [DepositController::class, 'store'])->name('add-deposits');
     Route::post('/update-deposits/{id}', [DepositController::class, 'update'])->name('update-items');
+    Route::delete('/update-deposits/{id}/delete', [DepositController::class, 'destroy'])->name('destroy-deposits');
 });

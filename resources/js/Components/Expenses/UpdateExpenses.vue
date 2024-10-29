@@ -52,7 +52,7 @@ const form = useForm({
   item_name: null,
   amount: null,
   price: null,
-  total: null,
+  total: 0,
   date: null,
 });
 
@@ -91,7 +91,9 @@ watch(
 const submit = async () => {
   await form.post(`/update-expenses/${props.selectedItem?.id}`, {
     onSuccess: () => {
+      form.reset();
       emit("close");
+      //   emit("refresh");
     },
     onError: (errors) => {
       console.error("Errors:", errors);

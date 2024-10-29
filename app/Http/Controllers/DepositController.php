@@ -27,7 +27,7 @@ class DepositController extends Controller
     {
         $validatedData = $request->validate([
             'income' => 'required|numeric',
-            'date' => 'required|date'
+            'date' => 'required|date',
         ]);
 
         $deposit = Deposit::findOrFail($id);
@@ -38,6 +38,6 @@ class DepositController extends Controller
 
         $deposit->update($validatedData);
 
-        return redirect()->back()->with('success', 'Data berhasil diupdate!');
+        return redirect()->route('admin.income')->with('success', 'Deposit updated successfully.');
     }
 }

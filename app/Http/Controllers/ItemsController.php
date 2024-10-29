@@ -18,12 +18,12 @@ class ItemsController extends Controller
             'date' => 'required'
         ]);
 
-        $validatedData = array_merge($validatedData, ['user_id' => Auth::id()]);
-
+        $validatedData['user_id'] = Auth::id();
         Expenses::create($validatedData);
 
         return redirect()->back()->with('success', 'Data berhasil ditambahkan!');
     }
+
 
 
     public function update(Request $request, $id)
@@ -44,8 +44,9 @@ class ItemsController extends Controller
 
         $expense->update($validatedData);
 
-        return redirect()->back()->with('success', 'Data berhasil diupdate!');
+        return redirect()->route('admin.expenses')->with('success', 'Data berhasil diupdate!');
     }
+
 
     public function destroy($id)
     {

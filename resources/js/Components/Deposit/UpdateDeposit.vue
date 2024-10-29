@@ -62,6 +62,7 @@ watch(
 const submit = async () => {
   await form.post(`/update-deposits/${props.selectedItem?.id}`, {
     onSuccess: () => {
+      form.reset();
       emit("close");
     },
     onError: (errors) => {
