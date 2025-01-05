@@ -88,7 +88,7 @@ function formatRupiah(angka) {
         <i class="fa-solid fa-coins text-2xl"></i>
       </div>
       <div>
-        <p class="text-sm">Total Pengeluaran</p>
+        <p class="text-sm">Total Expenditure</p>
         <p class="font-bold text-xl">
           {{ totalExpenses ? formatRupiah(totalExpenses) : "Rp 0" }}
         </p>
@@ -101,7 +101,7 @@ function formatRupiah(angka) {
         <i class="fa-brands fa-dropbox text-2xl"></i>
       </div>
       <div>
-        <p class="text-sm">Komoditas</p>
+        <p class="text-sm">Total Expenditure Items</p>
         <p class="font-bold text-xl">{{ totalItems }} Item</p>
       </div>
     </div>
@@ -132,7 +132,7 @@ function formatRupiah(angka) {
             class="flex items-center gap-5 px-3 py-2 text-white bg-emerald-800 border rounded w-full opacity-95 group-hover:opacity-30 hover:!opacity-95 transition-opacity duration-300"
           >
             <div><i class="fa-solid fa-plus text-xl text-white"></i></div>
-            <p class="uppercase text-sm font-bold">Tambah Barang</p>
+            <p class="uppercase text-sm font-bold">add expenses</p>
           </button>
           <button
             v-if="!UpdateExpense"
@@ -145,7 +145,7 @@ function formatRupiah(angka) {
             class="flex items-center gap-5 px-3 py-2 text-white bg-cyan-800 border rounded w-full transition-opacity duration-300"
           >
             <div><i class="fa-solid fa-pen text-white"></i></div>
-            <p class="uppercase text-sm font-bold">Ubah Barang</p>
+            <p class="uppercase text-sm font-bold">change expenses</p>
           </button>
           <DeleteExpenses :selected-item="selectedItem" />
         </div>
@@ -153,7 +153,7 @@ function formatRupiah(angka) {
     </div>
 
     <div class="col-span-6 lg:col-span-8 bg-white shadow-xl rounded-lg row-span-10 p-5">
-      <p class="font-bold px-2 uppercase text-slate-700">Daftar Barang</p>
+      <p class="font-bold px-2 uppercase text-slate-700">list of expenses</p>
       <div class="h-full overflow-y-auto scrollbar-none">
         <table class="table-auto w-full mt-5">
           <thead>
@@ -166,17 +166,17 @@ function formatRupiah(angka) {
               <th
                 class="text-center text-xs md:text-sm font-bold text-slate-700 w-[20%] py-[7px]"
               >
-                Nama Barang
+                Name Of Expenditure
               </th>
               <th
                 class="text-center text-xs md:text-sm font-bold text-slate-700 w-[10%] py-[7px]"
               >
-                Jumlah
+                Amount
               </th>
               <th
                 class="text-center text-xs md:text-sm font-bold text-slate-700 w-[20%] py-[7px]"
               >
-                Harga
+                Price
               </th>
               <th
                 class="text-center text-xs md:text-sm font-bold text-slate-700 w-[25%] py-[7px]"
@@ -186,7 +186,7 @@ function formatRupiah(angka) {
               <th
                 class="text-center text-xs md:text-sm font-bold text-slate-700 w-[20%] py-[7px]"
               >
-                Tanggal
+                Date
               </th>
             </tr>
           </thead>

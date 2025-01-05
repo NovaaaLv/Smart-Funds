@@ -17,14 +17,14 @@
         <IconLink link="/settings" iconClass="fa-solid fa-gear" label="Settings" />
       </div>
     </div>
-    <div class="w-full px-2">
+    <!-- <div class="w-full px-2">
       <button
         @click="signOut"
         class="bg-teal-600 rounded text-white text-xs w-full h-full border border-teal-600 transition-all duration-300 hover:bg-white hover:text-teal-600"
       >
         Sign Out
       </button>
-    </div>
+    </div> -->
   </div>
 
   <div
@@ -41,14 +41,14 @@
       <IconLink link="/settings" iconClass="fa-solid fa-gear" />
     </div>
 
-    <div class="w-full px-2">
+    <!-- <div class="w-full px-2">
       <button
         @click="signOut"
         class="bg-teal-600 rounded text-white text-xs w-full h-full border border-teal-600 transition-all duration-300 hover:bg-white hover:text-teal-600"
       >
         Sign Out
       </button>
-    </div>
+    </div> -->
   </div>
 </template>
 

@@ -11,7 +11,7 @@
     <div>
       <i class="fa-solid fa-ban text-white"></i>
     </div>
-    <p class="uppercase text-sm font-bold">Hapus Barang</p>
+    <p class="uppercase text-sm font-bold">delete expenses</p>
   </button>
 </template>
 
