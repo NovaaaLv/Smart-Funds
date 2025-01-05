@@ -14,42 +14,43 @@ use Inertia\Inertia;
 class DashboardController extends Controller
 {
 
-    public function dashboardView(DashboardChart $chart)
-    {
-        $userId = Auth::id();
-        $expenses = Expenses::where('user_id', $userId)->get();
-        $deposits = Deposit::where('user_id', $userId)->get();
+  public function dashboardView(DashboardChart $chart)
+  {
+    $userId = Auth::id();
+    $expenses = Expenses::where('user_id', $userId)->get();
+    $deposits = Deposit::where('user_id', $userId)->get();
 
-        return Inertia::render('Dashboard', [
-            'deposits' => $deposits,
-            'expenses' => $expenses,
-            'chart' => $chart->build()
-        ]);
-    }
-    public function expensesView(MonthlyExpensesChart $chart)
-    {
+    return Inertia::render('Dashboard', [
+      'deposits' => $deposits,
+      'expenses' => $expenses,
+      'chart' => $chart->build()
+    ]);
+  }
+  public function expensesView(MonthlyExpensesChart $chart)
+  {
 
-        $itemsPage = 10;
+    // $itemsPage = 10;
 
-        $userId = Auth::id();
-        $expenses = Expenses::where('user_id', $userId)->get();
-        return Inertia::render('Admin/Expenses', [
-            'expenses' => $expenses,
-            'chart' => $chart->build()
-        ]);
-    }
-    public function incomeView(MonthlyIncomeChart $chart)
-    {
+    $userId = Auth::id();
+    $expenses = Expenses::where('user_id', $userId)->get();
+    return Inertia::render('Admin/Expenses', [
+      'expenses' => $expenses,
+      'chart' => $chart->build()
+    ]);
+  }
+  public function incomeView(MonthlyIncomeChart $chart)
+  {
+    $itemsPage = 10;
 
-        $itemsPage = 10;
+    $userId = Auth::id();
+    $expenses = Expenses::where('user_id', $userId)->get();
+    $deposits = Deposit::where('user_id', $userId)->get();
 
-        $userId = Auth::id();
-        $expenses = Expenses::where('user_id', $userId)->get();
-        $deposits = Deposit::where('user_id', $userId)->get();
-        return Inertia::render('Admin/Income', [
-            'deposits' => $deposits,
-            'expenses' => $expenses,
-            'chart' => $chart->build()
-        ]);
-    }
+    return Inertia::render('Admin/Income', [
+      'deposits' => $deposits,
+      'expenses' => $expenses,
+      'userId' => $userId,
+      'chart' => $chart->build()
+    ]);
+  }
 }

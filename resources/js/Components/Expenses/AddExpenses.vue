@@ -57,7 +57,6 @@ const form = useForm({
   date: "",
 });
 
-// Watcher to calculate total when amount or price changes
 watch(
   () => [form.amount, form.price],
   ([newAmount, newPrice]) => {
@@ -68,7 +67,6 @@ watch(
     }
   }
 );
-
 
 function submit() {
   if (!isValidDate(form.date)) {

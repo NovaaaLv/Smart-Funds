@@ -56,6 +56,7 @@ const totalExpenses = computed(() => {
 
 // Fungsi untuk menghitung total items
 const totalItems = computed(() => {
+  console.log(props.expenses); // Cek data yang ada di props
   return props.expenses.reduce((sum, expense) => {
     const validItems =
       typeof expense.amount === "number"
@@ -88,7 +89,9 @@ function formatRupiah(angka) {
       </div>
       <div>
         <p class="text-sm">Total Pengeluaran</p>
-        <p class="font-bold text-xl">{{ formatRupiah(totalExpenses.value) }}</p>
+        <p class="font-bold text-xl">
+          {{ totalExpenses ? formatRupiah(totalExpenses) : "Rp 0" }}
+        </p>
       </div>
     </div>
     <div
@@ -99,7 +102,7 @@ function formatRupiah(angka) {
       </div>
       <div>
         <p class="text-sm">Komoditas</p>
-        <p class="font-bold text-xl">{{ totalItems.value }} Item</p>
+        <p class="font-bold text-xl">{{ totalItems }} Item</p>
       </div>
     </div>
 

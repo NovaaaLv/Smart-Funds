@@ -16,6 +16,10 @@ const props = defineProps({
     type: Array,
     required: true,
   },
+  userId: {
+    type: Array,
+    required: true,
+  },
   selectedItem: {
     type: Object,
     default: null,
@@ -40,6 +44,12 @@ const totalExpenses = computed(() => {
       typeof expense.total === "number" ? expense.total : parseFloat(expense.total) || 0;
     return sum + validTotal;
   }, 0);
+});
+
+const totalTransaction = computed(() => {
+  const userId = props.userId;
+  console.log(userId);
+  return props.deposits.filter((deposit) => deposit.user_id === userId).length;
 });
 
 const balance = computed(() => {
@@ -87,7 +97,7 @@ function formatRupiah(angka) {
       </div>
       <div>
         <p class="text-xs md:text-sm">Transaction Total</p>
-        <p class="font-bold text-base md:text-lg lg:text-xl">X</p>
+        <p class="font-bold text-base md:text-lg lg:text-xl">{{ totalTransaction }} X</p>
       </div>
     </div>
     <div
@@ -220,7 +230,7 @@ function formatRupiah(angka) {
       </div>
     </div>
 
-    <AddDeposit v-if="AddDeposits" @remove="AddDeposits = false" />
+    <AddDeposit sit v-if="AddDeposits" @remove="AddDeposits = false" />
     <UpdateDeposit
       v-if="UpdateDeposits"
       :selected-item="selectedItem"

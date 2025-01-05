@@ -29,7 +29,7 @@
 import InputLabel from "@/Components/InputLabel.vue";
 import { useForm } from "@inertiajs/vue3";
 
-const emit = defineEmits(["remove"]);
+const emit = defineEmits(["remove", "refreshTable"]);
 
 const handleRemove = () => {
   emit("remove");
@@ -41,6 +41,12 @@ const form = useForm({
 });
 
 function submit() {
-  form.post(route("add-deposits"));
+  form.post(route("add-deposits"), {
+    onSuccess: () => {
+      alert("Expense added successfully!");
+      form.reset();
+      emit("refreshTable");
+    },
+  });
 }
 </script>
